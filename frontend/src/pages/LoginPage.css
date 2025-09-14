@@ -1,0 +1,224 @@
+/* Styles for the login page */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', 'Inter', Arial, sans-serif;
+    background: #f7f7fa;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7fa;
+}
+
+.login-container {
+    display: flex;
+    width: 900px;
+    min-height: 600px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(44, 44, 84, 0.12);
+    overflow: hidden;
+}
+
+.login-left {
+    background: #4b256c;
+    color: #fff;
+    flex: 1.1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 32px;
+    position: relative;
+}
+
+.login-left h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.login-left p {
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+    opacity: 0.9;
+}
+
+.login-left .mockup-img {
+    width: 260px;
+    margin: 32px 0 0 0;
+}
+
+.login-right {
+    flex: 1.3;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 40px;
+}
+
+.login-form-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2c2c54;
+}
+
+.login-form-desc {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 24px;
+}
+
+.social-login-btn {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    background: #f7f7fa;
+    color: #2c2c54;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.social-login-btn:hover {
+    background: #ece6f6;
+}
+
+.or-divider {
+    text-align: center;
+    color: #bbb;
+    margin: 18px 0 18px 0;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.or-divider:before,
+.or-divider:after {
+    content: '';
+    display: inline-block;
+    width: 40%;
+    height: 1px;
+    background: #eee;
+    vertical-align: middle;
+    margin: 0 8px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    padding: 12px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fafbfc;
+    transition: border 0.2s;
+}
+
+.login-form input:focus {
+    border: 1.5px solid #a084e8;
+    outline: none;
+}
+
+.login-form .form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-form label {
+    font-size: 0.98rem;
+    color: #555;
+}
+
+.login-form .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.login-form .forgot-link {
+    color: #a084e8;
+    font-size: 0.97rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.login-form .forgot-link:hover {
+    color: #4b256c;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 13px 0;
+    background: linear-gradient(90deg, #ff9776 0%, #ff6f61 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 111, 97, 0.08);
+    transition: background 0.2s;
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #ff6f61 0%, #ff9776 100%);
+}
+
+.login-form .register-link {
+    margin-top: 18px;
+    text-align: center;
+    color: #888;
+    font-size: 0.98rem;
+}
+
+.login-form .register-link a {
+    color: #a084e8;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+.login-form .register-link a:hover {
+    color: #4b256c;
+}
+
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+        width: 98vw;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .login-left,
+    .login-right {
+        flex: unset;
+        width: 100%;
+        padding: 32px 16px;
+    }
+
+    .login-left {
+        min-height: 220px;
+    }
+}

@@ -1,16 +1,18 @@
 import express from "express";
 import pool from "../db.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
+import { postSchema } from "../validation/postValidation.js";
 
 const router = express.Router();
 
 // create post (protected)
 router.post("/", authMiddleware, async (req, res) => {
   try {
+    const { error } = postSchema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
     const { title, content } = req.body;
-    if (!title || !content)
-      return res.status(400).json({ message: "Missing title or content" });
-
     const [result] = await pool.query(
       "INSERT INTO posts (user_id, title, content) VALUES (?, ?, ?)",
       [req.user.id, title, content]
@@ -63,6 +65,10 @@ router.get("/:id", async (req, res) => {
 // update post (only owner)
 router.put("/:id", authMiddleware, async (req, res) => {
   try {
+    const { error } = postSchema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
     const { title, content } = req.body;
     // check owner
     const [rows] = await pool.query("SELECT user_id FROM posts WHERE id = ?", [

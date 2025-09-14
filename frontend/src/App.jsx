@@ -6,10 +6,14 @@ import {
   fetchPosts as fetchPostsApi,
   createPost,
 } from "./api/api";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Post from "./pages/Post";
+import About from "./pages/About";
 import { BlogPage } from "./pages/BlogPage";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
-import { HomePage } from "./pages/HomePage";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -147,70 +151,17 @@ function App() {
     }
   }
 
-  if (user) {
-    return (
-      <BlogPage
-        user={user}
-        handleLogout={handleLogout}
-        postData={postData}
-        setPostData={setPostData}
-        handleCreatePost={handleCreatePost}
-        posts={posts}
-        loading={loading}
-        onEdit={handleEditPost}
-        onDelete={handleDeletePost}
-        error={error}
-      />
-    );
-  }
-
   return (
-    <>
-      <HomePage
-        onLoginClick={() => {
-          setShowLogin(true);
-          setShowRegister(false);
-        }}
-        onRegisterClick={() => {
-          setShowRegister(true);
-          setShowLogin(false);
-        }}
-        posts={posts}
-      />
-      {showLogin && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <button className="modal-close" onClick={() => setShowLogin(false)}>
-              &times;
-            </button>
-            <LoginPage
-              loginData={loginData}
-              setLoginData={setLoginData}
-              handleLogin={handleLogin}
-              error={error}
-            />
-          </div>
-        </div>
-      )}
-      {showRegister && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <button
-              className="modal-close"
-              onClick={() => setShowRegister(false)}
-            >
-              &times;
-            </button>
-            <RegisterPage
-              registerData={registerData}
-              setRegisterData={setRegisterData}
-              handleRegister={handleRegister}
-              error={error}
-            />
-          </div>
-        </div>
-      )}
-    </>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home posts={posts} />} />
+          <Route path="/post/:id" element={<Post posts={posts} />} />
+          <Route path="/about" element={<About />} />
+          {/* You can add more routes here, e.g. for BlogPage, LoginPage, RegisterPage, etc. */}
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
